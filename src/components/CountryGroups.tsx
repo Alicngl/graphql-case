@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import LazyLoad from "react-lazy-load";
 
 interface Country {
   code: string;
@@ -20,6 +21,7 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
   filterText,
   groupCurrency,
 }) => {
+  const [code, setCode] = useState<string>();
   // Gruplanmış veriyi saklamak için bir obje oluşturun
   const groupedData: { [key: string]: Country[] } = {};
 
@@ -58,13 +60,27 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
             {groupCurrency == "" ? "" : <h2>Currency: {currency}</h2>}
             <ul>
               {countriesInGroup.map((country) => (
-                <li key={country.code}>
-                  <p>Name: {country.name}</p>
-                  <p>Native Name: {country.native}</p>
-                  <p>Capital: {country.capital}</p>
-                  <p>Emoji: {country.emoji}</p>
-                  <p>Currency: {country.currency}</p>
-                </li>
+                <LazyLoad height={100} offset={300} threshold={0}>
+                  <div
+                    style={{
+                      backgroundColor: code === country.code ? "#ccc9c9" : "",
+                    }}
+                    onClick={() => {
+                      setCode(country.code);
+                      console.log(country.code);
+                    }}
+                    className=" p-4 flex justify-between my-5 rounded-md shadow-md hover:shadow-xl"
+                    key={country.code}>
+                    <div className="min-w-min">
+                      <p className="text-sm">Name: {country.name}</p>
+                      <p className="text-sm">Capital: {country.capital}</p>
+                      <p className="text-sm">Emoji: {country.emoji}</p>
+                      <p className="text-sm w-18">
+                        Currency: {country.currency}
+                      </p>
+                    </div>
+                  </div>
+                </LazyLoad>
               ))}
             </ul>
           </div>

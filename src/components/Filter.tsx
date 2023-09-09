@@ -7,16 +7,18 @@ function Filter({
   onGroupCurrencyChange,
 }: any) {
   return (
-    <div>
+    <div className="">
       <input
+        className="border mr-2 p-2 rounded-md"
         type="text"
-        placeholder="Search by name..."
+        placeholder="Search By Name"
         value={filterText}
         onChange={(e) => onFilterTextChange(e.target.value)}
       />
       <input
+        className="border mr-2 p-2 rounded-md"
         type="text"
-        placeholder="Filter by currency..."
+        placeholder="Filter By Currency"
         value={groupCurrency}
         onChange={(e) => onGroupCurrencyChange(e.target.value)}
       />

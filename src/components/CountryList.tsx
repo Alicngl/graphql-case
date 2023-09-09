@@ -20,19 +20,23 @@ function CountryList({ countries }: any) {
   };
 
   return (
-    <div>
-      <h1>List of Countries</h1>
-      <Filter
-        filterText={filterText}
-        groupCurrency={groupCurrency}
-        onFilterTextChange={handleFilterTextChange}
-        onGroupCurrencyChange={handleGroupCurrencyChange}
-      />
-      <CountryGroups
-        countries={countries}
-        filterText={filterText}
-        groupCurrency={groupCurrency}
-      />
+    <div className="flex justify-center">
+      <div>
+        <h1 className="text-4xl text-center p-3">List of Countries</h1>
+        <div className="rounded-md p-5 shadow-md">
+          <Filter
+            filterText={filterText}
+            groupCurrency={groupCurrency}
+            onFilterTextChange={handleFilterTextChange}
+            onGroupCurrencyChange={handleGroupCurrencyChange}
+          />
+        </div>
+        <CountryGroups
+          countries={countries}
+          filterText={filterText}
+          groupCurrency={groupCurrency}
+        />
+      </div>
     </div>
   );
 }
