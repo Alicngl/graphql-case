@@ -38,6 +38,7 @@ function CountryList({ countries }: any) {
 
     return groups;
   };
+  console.log(groupedCountries, "asdasdasd");
 
   return (
     <div>
@@ -62,7 +63,7 @@ function CountryList({ countries }: any) {
       <ul>
         {groupedCountries &&
           Object.keys(groupedCountries).map((groupValue: string) => (
-            <ul>
+            <ul key={groupValue}>
               {groupedCountries[groupValue].map((country: any) => (
                 <li key={country.code}>
                   <p>Name: {country.name}</p>
