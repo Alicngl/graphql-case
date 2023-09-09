@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import Filter from "./Filter";
 import CountryGroups from "./CountryGroups";
 
-function CountryList({ countries }) {
+function CountryList({ countries }: any) {
   const [filterText, setFilterText] = useState("");
   const [groupCurrency, setGroupCurrency] = useState("");
 
-  const handleFilterTextChange = (text) => {
+  const handleFilterTextChange = (text: any) => {
     setFilterText(text);
   };
 
-  const handleGroupCurrencyChange = (currency) => {
-    setGroupCurrency(currency);
+  const handleGroupCurrencyChange = (currency: any) => {
+    if (currency.trim() === "") {
+      // Eğer currency değeri boşsa, grupCurrency'yi boş bir dize olarak ayarla
+      setGroupCurrency("");
+    } else {
+      setGroupCurrency(currency);
+    }
   };
 
   return (

@@ -20,11 +20,6 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
   filterText,
   groupCurrency,
 }) => {
-  // Currency değerlerini bulma
-  const currencyValues = [
-    ...new Set(countries.map((country) => country.currency)),
-  ].filter(Boolean);
-
   // Gruplanmış veriyi saklamak için bir obje oluşturun
   const groupedData: { [key: string]: Country[] } = {};
 
@@ -60,7 +55,7 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
 
         return (
           <div key={currency}>
-            <h2>Currency: {currency}</h2>
+            {groupCurrency == "" ? "" : <h2>Currency: {currency}</h2>}
             <ul>
               {countriesInGroup.map((country) => (
                 <li key={country.code}>
