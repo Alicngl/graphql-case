@@ -62,28 +62,17 @@ function CountryList({ countries }: any) {
       <ul>
         {groupedCountries &&
           Object.keys(groupedCountries).map((groupValue: string) => (
-            <li key={groupValue}>
-              <h2>{groupValue}</h2>
-              <ul>
-                {groupedCountries[groupValue].map((country: any) => (
-                  <li key={country.code}>
-                    <p>Name: {country.name}</p>
-                    <p>Native Name: {country.native}</p>
-                    <p>Capital: {country.capital}</p>
-                    <p>Emoji: {country.emoji}</p>
-                    <p>Currency: {country.currency}</p>
-                    <p>Languages:</p>
-                    <ul>
-                      {country.languages.map((language: any) => (
-                        <li key={language.code}>
-                          {language.name} ({language.code})
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </li>
+            <ul>
+              {groupedCountries[groupValue].map((country: any) => (
+                <li key={country.code}>
+                  <p>Name: {country.name}</p>
+                  <p>Native Name: {country.native}</p>
+                  <p>Capital: {country.capital}</p>
+                  <p>Emoji: {country.emoji}</p>
+                  <p>Currency: {country.currency}</p>
+                </li>
+              ))}
+            </ul>
           ))}
       </ul>
     </div>

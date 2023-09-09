@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import CountryList from "../components/CountryList";
-import FilterGroup from "@/components/FilterGroup";
 
 const GET_ALL_COUNTRIES = gql`
   query GetAllCountries {

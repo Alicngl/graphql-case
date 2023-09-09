@@ -5,7 +5,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
-
+import type { AppProps } from "next/app";
 const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/graphql", // Ülkeler API'sinin URL'si buraya gelmelidir
   cache: new InMemoryCache(),

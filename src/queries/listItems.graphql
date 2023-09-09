@@ -1,5 +1,6 @@
-query Query {
-  country(code: "BR") {
+query GetAllCountries {
+  countries {
+    code
     name
     native
     capital
