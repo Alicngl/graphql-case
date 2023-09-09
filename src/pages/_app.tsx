@@ -11,15 +11,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const getCountries = gql`
-  {
-    countries {
-      name
-      code
-    }
-  }
-`;
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
