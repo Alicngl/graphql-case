@@ -20,10 +20,10 @@ function CountryList({ countries }: any) {
   };
 
   return (
-    <div className="flex justify-center">
-      <div>
+    <div className="flex justify-center min-w-full">
+      <div className="w-3/5">
         <h1 className="text-4xl text-center p-3">List of Countries</h1>
-        <div className="rounded-md p-5 shadow-md">
+        <div className="rounded-md p-5 shadow-md w-22">
           <Filter
             filterText={filterText}
             groupCurrency={groupCurrency}

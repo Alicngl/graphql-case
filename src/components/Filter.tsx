@@ -7,16 +7,16 @@ function Filter({
   onGroupCurrencyChange,
 }: any) {
   return (
-    <div className="">
+    <div className="flex justify-center">
       <input
-        className="border mr-2 p-2 rounded-md"
+        className="border mr-4 p-2 rounded-md"
         type="text"
         placeholder="Search By Name"
         value={filterText}
         onChange={(e) => onFilterTextChange(e.target.value)}
       />
       <input
-        className="border mr-2 p-2 rounded-md"
+        className="border ml-4 p-2 rounded-md"
         type="text"
         placeholder="Filter By Currency"
         value={groupCurrency}
