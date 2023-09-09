@@ -1,44 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function CountryList({ countries }: any) {
   const [filterText, setFilterText] = useState("");
-  const [groupBy, setGroupBy] = useState("");
-  const [groupedCountries, setGroupedCountries] = useState<any>(null);
+  const [groupCurrency, setGroupCurrency] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState<any>(null);
+
+  useEffect(() => {
+    // İsim filtrelemesi
+    const nameFilteredData = countries.filter((country: any) =>
+      country.name.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    // Currency filtrelemesi (eğer currency girildiyse)
+    let currencyFilteredData = nameFilteredData;
+    if (groupCurrency) {
+      currencyFilteredData = nameFilteredData.filter(
+        (country: any) =>
+          country.currency?.toLowerCase() === groupCurrency.toLowerCase()
+      );
+    }
+
+    setFilteredCountries(currencyFilteredData);
+  }, [countries, filterText, groupCurrency]);
 
   const handleFilterTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(e.target.value);
   };
 
-  const handleGroupByChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGroupBy(e.target.value);
+  const handleGroupCurrencyChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setGroupCurrency(e.target.value);
   };
 
-  const handleApplyFilters = () => {
-    // Filtreleme
-    const filteredData = countries.filter((country: any) =>
-      country.name.toLowerCase().includes(filterText.toLowerCase())
-    );
-
-    // Gruplama
-    const groupedData = groupByField(filteredData, groupBy);
-
-    setGroupedCountries(groupedData);
-  };
-
-  const groupByField = (data: any, field: string) => {
-    const groups: any = {};
-
-    data.forEach((country: any) => {
-      const value = country[field] || "N/A";
-      if (!groups[value]) {
-        groups[value] = [];
-      }
-      groups[value].push(country);
-    });
-
-    return groups;
-  };
-  console.log(groupedCountries, "asdasdasd");
+  // Currency değerlerini bulma ve boş grupları filtreleme
+  const currencyValues = [
+    ...new Set(countries.map((country: any) => country.currency)),
+  ].filter(Boolean);
 
   return (
     <div>
@@ -46,7 +44,7 @@ function CountryList({ countries }: any) {
       <div>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search by name..."
           value={filterText}
           onChange={handleFilterTextChange}
         />
@@ -54,17 +52,27 @@ function CountryList({ countries }: any) {
       <div>
         <input
           type="text"
-          placeholder="Group by..."
-          value={groupBy}
-          onChange={handleGroupByChange}
+          placeholder="Filter by currency..."
+          value={groupCurrency}
+          onChange={handleGroupCurrencyChange}
         />
       </div>
-      <button onClick={handleApplyFilters}>Apply</button>
-      <ul>
-        {groupedCountries &&
-          Object.keys(groupedCountries).map((groupValue: string) => (
-            <ul key={groupValue}>
-              {groupedCountries[groupValue].map((country: any) => (
+      {currencyValues.map((currency: string) => {
+        const countriesInGroup =
+          filteredCountries &&
+          filteredCountries.filter(
+            (country: any) => country.currency === currency
+          );
+
+        if (countriesInGroup.length === 0) {
+          return null; // Boş grupları gösterme
+        }
+
+        return (
+          <div key={currency}>
+            <h2>Currency: {currency}</h2>
+            <ul>
+              {countriesInGroup.map((country: any) => (
                 <li key={country.code}>
                   <p>Name: {country.name}</p>
                   <p>Native Name: {country.native}</p>
@@ -74,8 +82,9 @@ function CountryList({ countries }: any) {
                 </li>
               ))}
             </ul>
-          ))}
-      </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }
