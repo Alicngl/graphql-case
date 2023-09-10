@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import CountryList from "../components/CountryList";
+import { Loader } from "@/components/Loader";
 
 const GET_ALL_COUNTRIES = gql`
   query GetAllCountries {
@@ -22,8 +23,18 @@ const GET_ALL_COUNTRIES = gql`
 function HomePage() {
   const { loading, error, data } = useQuery(GET_ALL_COUNTRIES);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Error: {error?.message}</p>
+      </div>
+    );
 
   const countries = data.countries;
 
