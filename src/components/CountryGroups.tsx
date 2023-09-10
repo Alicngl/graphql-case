@@ -96,14 +96,16 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
         {groupByCurrency ? (
           Object.keys(groupedData).map((currency) => (
             <div key={currency}>
-              <h2 className="text-sm py-2">Currency : {currency}</h2>{" "}
+              <h2 className="text-sm py-2 font-bold text-slate-700">
+                CURRENCY : {currency}
+              </h2>{" "}
               {/* Currency değerini ekle */}
               <div className="grid md:grid-cols-3 gap-4">
                 {groupedData[currency].map((country) => (
                   <div
                     key={country.code}
                     onClick={() => handleClick(country)}
-                    className={`p-4 flex justify-between my-5 rounded-md shadow-md hover:shadow-xl ${
+                    className={`p-4 flex justify-between my-2 rounded-md shadow-md hover:shadow-xl ${
                       selectedCountry === country ? `bg-blue-500` : ""
                     }`}>
                     <div
@@ -135,7 +137,7 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
                   className={`${
                     selectedCountry === country ? "text-white" : ""
                   }`}>
-                  <p className="text-sm">Nameeee: {country.name}</p>
+                  <p className="text-sm">Name: {country.name}</p>
                   <p className="text-sm">Capital: {country.capital}</p>
                   <p className="text-sm">Emoji: {country.emoji}</p>
                   <p className="text-sm w-18">Currency: {country.currency}</p>

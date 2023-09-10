@@ -27,8 +27,8 @@ function CountryList({ countries }: any) {
   return (
     <div className="flex justify-center">
       <div className="w-3/4 md:w-3/5">
-        <h1 className="sm:text-4xl md:text-4xl text-center p-3">
-          List of Countries
+        <h1 className="sm:text-4xl md:text-4xl text-center p-3 font-bold">
+          LIST OF COUNTRIES
         </h1>
         <div className="rounded-md p-5 shadow-md ">
           <Filter
