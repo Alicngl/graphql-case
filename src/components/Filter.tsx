@@ -9,26 +9,32 @@ function Filter({
   onGroupByCurrencyClick, // Yeni eklenen buton işlevi
 }: any) {
   return (
-    <div className="flex justify-center">
-      <input
-        className="border mr-4 p-2 rounded-md"
-        type="text"
-        placeholder="Search By Name"
-        value={filterText}
-        onChange={(e) => onFilterTextChange(e.target.value)}
-      />
-      <input
-        className="border ml-4 mr-4 p-2 rounded-md"
-        type="text"
-        placeholder="Filter By Currency"
-        value={groupCurrency}
-        onChange={(e) => onGroupCurrencyChange(e.target.value)}
-      />
-      <button
-        onClick={onGroupByCurrencyClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md ml-4">
-        Group by Currency
-      </button>
+    <div className="grid sm:grid-cols-1 md:grid-cols-3 justify-center">
+      <div>
+        <input
+          className="border p-2 rounded-md"
+          type="text"
+          placeholder="Search By Name"
+          value={filterText}
+          onChange={(e) => onFilterTextChange(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          className="border  p-2 rounded-md"
+          type="text"
+          placeholder="Filter By Currency"
+          value={groupCurrency}
+          onChange={(e) => onGroupCurrencyChange(e.target.value)}
+        />
+      </div>
+      <div>
+        <button
+          onClick={onGroupByCurrencyClick}
+          className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-md w-">
+          Group by Currency
+        </button>
+      </div>
     </div>
   );
 }
