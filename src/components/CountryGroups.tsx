@@ -98,7 +98,7 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
             <div key={currency}>
               <h2 className="text-sm py-2">Currency : {currency}</h2>{" "}
               {/* Currency değerini ekle */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 {groupedData[currency].map((country) => (
                   <div
                     key={country.code}

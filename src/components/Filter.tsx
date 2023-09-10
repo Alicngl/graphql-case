@@ -12,7 +12,7 @@ function Filter({
     <div className="grid sm:grid-cols-1 md:grid-cols-3 justify-center">
       <div>
         <input
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md mb-2 md:mb-0"
           type="text"
           placeholder="Search By Name"
           value={filterText}
@@ -21,7 +21,7 @@ function Filter({
       </div>
       <div>
         <input
-          className="border  p-2 rounded-md"
+          className="border  p-2 rounded-md mb-2 md:mb-0"
           type="text"
           placeholder="Filter By Currency"
           value={groupCurrency}
@@ -31,7 +31,7 @@ function Filter({
       <div>
         <button
           onClick={onGroupByCurrencyClick}
-          className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-md w-">
+          className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-md w-full md:w-fit">
           Group by Currency
         </button>
       </div>

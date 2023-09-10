@@ -25,12 +25,12 @@ function CountryList({ countries }: any) {
   };
 
   return (
-    <div className="flex justify-center min-w-full">
-      <div className="w-3/5">
+    <div className="flex justify-center">
+      <div className="w-3/4 md:w-3/5">
         <h1 className="sm:text-4xl md:text-4xl text-center p-3">
           List of Countries
         </h1>
-        <div className="rounded-md p-5 shadow-md w-22">
+        <div className="rounded-md p-5 shadow-md ">
           <Filter
             filterText={filterText}
             groupCurrency={groupCurrency}
@@ -39,12 +39,14 @@ function CountryList({ countries }: any) {
             onGroupByCurrencyClick={handleGroupByCurrencyClick}
           />
         </div>
-        <CountryGroups
-          countries={countries}
-          filterText={filterText}
-          groupCurrency={groupCurrency}
-          groupByCurrency={groupByCurrency}
-        />
+        <div>
+          <CountryGroups
+            countries={countries}
+            filterText={filterText}
+            groupCurrency={groupCurrency}
+            groupByCurrency={groupByCurrency}
+          />
+        </div>
       </div>
     </div>
   );
