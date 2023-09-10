@@ -1,3 +1,4 @@
+// Filter.js
 import React from "react";
 
 function Filter({
@@ -5,6 +6,7 @@ function Filter({
   groupCurrency,
   onFilterTextChange,
   onGroupCurrencyChange,
+  onGroupByCurrencyClick, // Yeni eklenen buton işlevi
 }: any) {
   return (
     <div className="flex justify-center">
@@ -22,6 +24,12 @@ function Filter({
         value={groupCurrency}
         onChange={(e) => onGroupCurrencyChange(e.target.value)}
       />
+      <button
+        onClick={onGroupByCurrencyClick}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-4"
+      >
+        Group by Currency
+      </button>
     </div>
   );
 }

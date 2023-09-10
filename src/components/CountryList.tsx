@@ -1,3 +1,4 @@
+// CountryList.js
 import React, { useState } from "react";
 import Filter from "./Filter";
 import CountryGroups from "./CountryGroups";
@@ -5,6 +6,7 @@ import CountryGroups from "./CountryGroups";
 function CountryList({ countries }: any) {
   const [filterText, setFilterText] = useState("");
   const [groupCurrency, setGroupCurrency] = useState("");
+  const [groupByCurrency, setGroupByCurrency] = useState(false);
 
   const handleFilterTextChange = (text: any) => {
     setFilterText(text);
@@ -12,11 +14,14 @@ function CountryList({ countries }: any) {
 
   const handleGroupCurrencyChange = (currency: any) => {
     if (currency.trim() === "") {
-      // Eğer currency değeri boşsa, grupCurrency'yi boş bir dize olarak ayarla
       setGroupCurrency("");
     } else {
       setGroupCurrency(currency);
     }
+  };
+
+  const handleGroupByCurrencyClick = () => {
+    setGroupByCurrency(!groupByCurrency);
   };
 
   return (
@@ -29,12 +34,14 @@ function CountryList({ countries }: any) {
             groupCurrency={groupCurrency}
             onFilterTextChange={handleFilterTextChange}
             onGroupCurrencyChange={handleGroupCurrencyChange}
+            onGroupByCurrencyClick={handleGroupByCurrencyClick}
           />
         </div>
         <CountryGroups
           countries={countries}
           filterText={filterText}
           groupCurrency={groupCurrency}
+          groupByCurrency={groupByCurrency}
         />
       </div>
     </div>
