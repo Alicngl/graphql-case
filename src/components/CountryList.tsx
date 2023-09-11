@@ -1,18 +1,31 @@
-// CountryList.js
-import React, { useState } from "react";
+// CountryList.tsx
+import React, { useState, ChangeEvent } from "react";
 import Filter from "./Filter";
 import CountryGroups from "./CountryGroups";
 
-function CountryList({ countries }: any) {
-  const [filterText, setFilterText] = useState("");
-  const [groupCurrency, setGroupCurrency] = useState("");
-  const [groupByCurrency, setGroupByCurrency] = useState(false);
+interface Country {
+  code: string;
+  name: string;
+  native: string;
+  capital: string;
+  emoji: string;
+  currency: string;
+}
 
-  const handleFilterTextChange = (text: any) => {
+interface Props {
+  countries: Country[];
+}
+
+function CountryList({ countries }: Props) {
+  const [filterText, setFilterText] = useState<string>("");
+  const [groupCurrency, setGroupCurrency] = useState<string>("");
+  const [groupByCurrency, setGroupByCurrency] = useState<boolean>(false);
+
+  const handleFilterTextChange = (text: string) => {
     setFilterText(text);
   };
 
-  const handleGroupCurrencyChange = (currency: any) => {
+  const handleGroupCurrencyChange = (currency: string) => {
     if (currency.trim() === "") {
       setGroupCurrency("");
     } else {
@@ -30,7 +43,7 @@ function CountryList({ countries }: any) {
         <h1 className="sm:text-4xl md:text-4xl text-center p-3 font-bold">
           LIST OF COUNTRIES
         </h1>
-        <div className="rounded-md p-5 shadow-md ">
+        <div className="rounded-md p-5 shadow-md">
           <Filter
             filterText={filterText}
             groupCurrency={groupCurrency}

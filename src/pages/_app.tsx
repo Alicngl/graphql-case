@@ -9,7 +9,7 @@ import type { AppProps } from "next/app";
 import "../styles/globals.css";
 
 const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com/graphql", // Ülkeler API'sinin URL'si buraya gelmelidir
+  uri: "https://countries.trevorblades.com/graphql",
   cache: new InMemoryCache(),
 });
 

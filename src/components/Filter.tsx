@@ -6,7 +6,7 @@ function Filter({
   groupCurrency,
   onFilterTextChange,
   onGroupCurrencyChange,
-  onGroupByCurrencyClick, // Yeni eklenen buton işlevi
+  onGroupByCurrencyClick,
 }: any) {
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-3 justify-center">

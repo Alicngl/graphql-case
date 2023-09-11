@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import styles from "../styles/globals.css";
 
+// Define the Country interface for type safety.
 interface Country {
   code: string;
   name: string;
@@ -9,6 +11,7 @@ interface Country {
   currency: string;
 }
 
+// Define the props interface for the CountryGroups component.
 interface CountryGroupsProps {
   countries: Country[];
   filterText: string;
@@ -16,12 +19,14 @@ interface CountryGroupsProps {
   groupByCurrency: boolean;
 }
 
+// Create the CountryGroups component using a functional component approach.
 const CountryGroups: React.FC<CountryGroupsProps> = ({
   countries,
   filterText,
   groupCurrency,
   groupByCurrency,
 }) => {
+  // Initialize state variables using the useState hook.
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [filteredCountries, setFilteredCountries] =
     useState<Country[]>(countries);
@@ -29,6 +34,7 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
     {}
   );
 
+  // useEffect to filter and group countries based on filterText and groupByCurrency flags.
   useEffect(() => {
     let updatedFilteredCountries = countries;
     const newGroupedData: { [key: string]: Country[] } = {};
@@ -64,11 +70,12 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
       });
     }
 
+    // Update the state variables with filtered and grouped data.
     setFilteredCountries(updatedFilteredCountries);
     setGroupedData(newGroupedData);
   }, [countries, filterText, groupCurrency, groupByCurrency]);
 
-  // Otomatik olarak 10. öğeyi veya son öğeyi seçme
+  // Automatically select the 10th item or the last item when filteredCountries changes.
   useEffect(() => {
     if (filteredCountries.length > 0) {
       if (filteredCountries.length > 10) {
@@ -81,11 +88,13 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
     }
   }, [filteredCountries]);
 
+  // Handle the click event to select/deselect a country.
   const handleClick = (country: Country) => {
     if (selectedCountry === country) {
-      // Aynı ülkeye tekrar tıklandığında seçimi kaldır
+      // Deselect the country when it's clicked again.
       setSelectedCountry(null);
     } else {
+      // Select the clicked country.
       setSelectedCountry(country);
     }
   };
@@ -99,19 +108,28 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
               <h2 className="text-sm py-2 font-bold text-slate-700">
                 CURRENCY : {currency}
               </h2>{" "}
-              {/* Currency değerini ekle */}
+              {/* Add the Currency value */}
               <div className="grid md:grid-cols-3 gap-4">
                 {groupedData[currency].map((country) => (
                   <div
+                    style={{
+                      backgroundColor: `${
+                        selectedCountry === country
+                          ? "var(--primary-color)"
+                          : ""
+                      }`,
+                    }}
                     key={country.code}
                     onClick={() => handleClick(country)}
-                    className={`p-4 flex justify-between my-2 rounded-md shadow-md hover:shadow-xl ${
-                      selectedCountry === country ? `bg-blue-500` : ""
-                    }`}>
+                    className={`p-4 flex justify-between my-2 rounded-md shadow-md hover:shadow-xl`}>
                     <div
-                      className={`${
-                        selectedCountry === country ? "text-white" : ""
-                      }`}>
+                      style={{
+                        color: `${
+                          selectedCountry === country
+                            ? "var(--secondary-color)"
+                            : ""
+                        }`,
+                      }}>
                       <p className="text-sm">Name: {country.name}</p>
                       <p className="text-sm">Capital: {country.capital}</p>
                       <p className="text-sm">Emoji: {country.emoji}</p>
@@ -128,15 +146,22 @@ const CountryGroups: React.FC<CountryGroupsProps> = ({
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredCountries.map((country) => (
               <div
+                style={{
+                  backgroundColor: `${
+                    selectedCountry === country ? "var(--primary-color)" : ""
+                  }`,
+                }}
                 key={country.code}
                 onClick={() => handleClick(country)}
-                className={`p-4 flex justify-between my-5 rounded-md shadow-md hover:shadow-xl ${
-                  selectedCountry === country ? `bg-blue-500` : ""
-                }`}>
+                className={`p-4 flex justify-between my-5 rounded-md shadow-md hover:shadow-xl`}>
                 <div
-                  className={`${
-                    selectedCountry === country ? "text-white" : ""
-                  }`}>
+                  style={{
+                    color: `${
+                      selectedCountry === country
+                        ? "var(--secondary-color)"
+                        : ""
+                    }`,
+                  }}>
                   <p className="text-sm">Name: {country.name}</p>
                   <p className="text-sm">Capital: {country.capital}</p>
                   <p className="text-sm">Emoji: {country.emoji}</p>
